@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Wardrobe - Search Clothes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .clothing-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Clothes</h1>
+    <div class="search-bar">
+        <label for="type">Type:</label>
+        <select id="type">
+            <option value="">All</option>
+            <option value="hat">Hat</option>
+            <option value="shirt">Shirt</option>
+            <option value="pants">Pants</option>
+            <option value="shoes">Shoes</option>
+            <option value="jacket">Jacket</option>
+            <option value="dress">Dress</option>
+        </select>
+
+        <label for="brand">Brand:</label>
+        <select id="brand">
+            <option value="">All</option>
+            <option value="Nike">Nike</option>
+            <option value="Adidas">Adidas</option>
+            <option value="Zara">Zara</option>
+            <option value="Uniqlo">Uniqlo</option>
+            <option value="H&M">H&M</option>
+            <option value="Gucci">Gucci</option>
+        </select>
+
+        <label for="color">Color:</label>
+        <select id="color">
+            <option value="">All</option>
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="black">Black</option>
+            <option value="white">White</option>
+            <option value="green">Green</option>
+            <option value="yellow">Yellow</option>
+        </select>
+
+        <button onclick="searchClothes()">Search</button>
+    </div>
+
+    <div id="clothing-list">
+        <!-- Clothes will be displayed here -->
+    </div>
+
+    <script>
+        //Sample clothing data
+        const clothes = [
+            { type: 'hat', brand: 'Nike', color: 'red', description: 'Red Nike Cap' },
+            { type: 'shirt', brand: 'Zara', color: 'blue', description: 'Blue Zara Shirt' },
+            { type: 'pants', brand: 'Adidas', color: 'black', description: 'Black Adidas Pants' },
+            { type: 'shoes', brand: 'Uniqlo', color: 'white', description: 'White Uniqlo Sneakers' },
+            { type: 'shirt', brand: 'Nike', color: 'red', description: 'Red Nike T-Shirt' },
+            { type: 'hat', brand: 'Adidas', color: 'blue', description: 'Blue Adidas Hat' },
+            { type: 'jacket', brand: 'H&M', color: 'black', description: 'Black H&M Jacket' },
+            { type: 'dress', brand: 'Zara', color: 'red', description: 'Red Zara Dress' },
+            { type: 'shoes', brand: 'Gucci', color: 'black', description: 'Black Gucci Loafers' },
+            { type: 'hat', brand: 'Gucci', color: 'green', description: 'Green Gucci Hat' },
+            { type: 'shirt', brand: 'Uniqlo', color: 'white', description: 'White Uniqlo Shirt' },
+            { type: 'pants', brand: 'H&M', color: 'blue', description: 'Blue H&M Jeans' },
+            { type: 'jacket', brand: 'Nike', color: 'yellow', description: 'Yellow Nike Windbreaker' },
+            { type: 'dress', brand: 'H&M', color: 'green', description: 'Green H&M Summer Dress' },
+            { type: 'shoes', brand: 'Adidas', color: 'red', description: 'Red Adidas Running Shoes' },
+            { type: 'pants', brand: 'Gucci', color: 'white', description: 'White Gucci Trousers' }
+        ];
+
+        //Function to search and display clothes
+        function searchClothes() {
+            const type = document.getElementById('type').value;
+            const brand = document.getElementById('brand').value;
+            const color = document.getElementById('color').value;
+
+            //Filter clothes based on search criteria
+            const filteredClothes = clothes.filter(item => {
+                return (type === '' || item.type === type) &&
+                       (brand === '' || item.brand === brand) &&
+                       (color === '' || item.color === color);
+            });
+
+            //Display the filtered clothes or all items if no filters 
+            const clothingList = document.getElementById('clothing-list');
+            clothingList.innerHTML = '';
+
+            if (filteredClothes.length === 0) {
+                clothingList.innerHTML = '<p>No clothes found.</p>';
+            } else {
+                filteredClothes.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'clothing-item';
+                    div.innerHTML = `<strong>${item.description}</strong><br>Type: ${item.type}, Brand: ${item.brand}, Color: ${item.color}`;
+                    clothingList.appendChild(div);
+                });
+            }
+        }
+
+        //Display all items when no filter
+        window.onload = searchClothes;
+    </script>
+</body>
+</html>
