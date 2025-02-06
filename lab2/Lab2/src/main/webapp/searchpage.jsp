@@ -18,6 +18,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #ffebde;
         }
         .search-bar {
             margin-bottom: 20px;
@@ -42,7 +43,8 @@
             return;
         }
     %>
-
+    
+    <%-- Username being dynamically displayed --%>
     <p>Welcome, <%= username %>! <a href="logout.jsp">Logout</a></p>
 
     <form action="SearchClothesServer" method="GET">

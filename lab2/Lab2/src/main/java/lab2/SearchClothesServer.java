@@ -32,11 +32,13 @@ public class SearchClothesServer extends HttpServlet {
         clothes.add(new ClothingItem("pants", "Gucci", "white", "White Gucci Trousers"));
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String type = request.getParameter("type");
         String brand = request.getParameter("brand");
         String color = request.getParameter("color");
 
+        //List the filtered clothes
         List<String> filteredClothes = new ArrayList<>();
         for (ClothingItem item : clothes) {
             if ((type == null || type.isEmpty() || item.getType().equals(type)) &&
@@ -49,10 +51,10 @@ public class SearchClothesServer extends HttpServlet {
         request.setAttribute("clothingItems", filteredClothes);
         request.getRequestDispatcher("searchpage.jsp").forward(request, response);
     }
-
+    
+    //Clothing class
     private static class ClothingItem {
         private String type, brand, color, description;
-
         public ClothingItem(String type, String brand, String color, String description) {
             this.type = type;
             this.brand = brand;

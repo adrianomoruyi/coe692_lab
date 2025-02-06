@@ -14,35 +14,28 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 50px;
+            margin: 20px;
             text-align: center;
         }
         .login-container {
             max-width: 300px;
             margin: auto;
             padding: 20px;
-            border: 1px solid #ddd;
             border-radius: 5px;
-            background-color: #f9f9f9;
+            background-color: #ffe0cc;
         }
         input[type="text"], input[type="password"] {
             width: 90%;
             padding: 8px;
             margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
         }
         button {
             width: 100%;
             padding: 10px;
             border: none;
-            background-color: #007BFF;
+            background-color: #422818;
             color: white;
             border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
         }
         .error {
             color: red;
@@ -53,9 +46,9 @@
 <body>
 
     <div class="login-container">
-        <h2>Login</h2>
+        <h2>Login to Virtual Wardrobe</h2>
 
-        <%-- Display error message if login fails --%>
+        <%-- Display error if login fails --%>
         <%
             String error = request.getParameter("error");
             if (error != null) {

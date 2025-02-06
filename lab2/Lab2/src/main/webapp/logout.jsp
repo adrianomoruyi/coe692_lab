@@ -8,9 +8,10 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 
 <%
+    //Ends session and sneds user back to login
     HttpSession sessionObj = request.getSession(false);
     if (sessionObj != null) {
-        sessionObj.invalidate(); // Destroy session
+        sessionObj.invalidate();
     }
     response.sendRedirect("login.jsp");
 %>

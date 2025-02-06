@@ -10,10 +10,12 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/LoginServer")
 public class LoginServer extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String username = (String) request.getParameter("username");
+        String password = (String) request.getParameter("password");
 
+        //Login to the prototype with username: admin and password: password
         if ("admin".equals(username) && "password".equals(password)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
